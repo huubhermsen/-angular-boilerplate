@@ -1,0 +1,63 @@
+@mixin mask {
+  -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+}
+
+@mixin center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+@mixin smooth-scroll {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+@mixin visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+@mixin aspect-ratio($width: 16, $height: 9) {
+  position: relative;
+  overflow: hidden;
+
+  // Children
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+  & > :first-child {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+@mixin flex-width($width) {
+  min-width: rem($width);
+  max-width: rem($width);
+}
+
+@mixin flex-height($height) {
+  min-height: rem($height);
+  max-height: rem($height);
+}
+
+@mixin flex-size($width, $height) {
+  min-width: rem($width);
+  max-width: rem($width);
+  min-height: rem($height);
+  max-height: rem($height);
+}

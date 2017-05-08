@@ -12,6 +12,13 @@
     "typeRoots": [
       "node_modules/@types"
     ],
+    "paths": {
+      "@app/constants": ["app/constants"],
+      "@app/modules": ["app/modules"],
+      "@app/services": ["app/services"],
+      "@app/validators": ["app/validators"],
+      "@app/resolvers": ["app/resolvers"]
+    },
     "lib": [
       "es2016",
       "dom"

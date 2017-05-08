@@ -27,7 +27,11 @@ const config = {
     extensions: [
       ".ts",
       ".js"
-    ]
+    ],
+    alias: {
+      "@app": helpers.root("src/app"),
+      "image": helpers.root("src/image")
+    }
   },
 
   entry: {
@@ -69,7 +73,8 @@ const config = {
       },
       {
         test: /\.scss$/,
-        include: helpers.root("src/app"),
+        include: helpers.appPath,
+        exclude: helpers.root("src/app/default.scss"),
         use: [
           "exports-loader?module.exports.toString()",
           "css-loader",
@@ -88,6 +93,30 @@ const config = {
             }
           }
         ]
+      },
+      {
+        test: /\.scss$/,
+        include: helpers.root("src/app/default.scss"),
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: [
+            "css-loader",
+              {
+              loader: "postcss-loader",
+              options: {
+                plugins: () => [autoprefixer]
+              }
+            },
+            {
+              loader: "sass-loader",
+              options: {
+                includePaths: [
+                  helpers.root("src/sass")
+                ]
+              }
+            }
+          ]
+        })
       }
     ]
   },
@@ -101,13 +130,14 @@ const config = {
     }),
     new CommonsChunkPlugin({
       name: "vendor",
-      minChunks: (module) => (module) => module.resource && module.resource.startsWith(helpers.root("node_modules")),
+      minChunks: (module) => (module) => module.resource && module.resource.startsWith(helpers.nodeModulesPath),
       chunks: [
         "bootstrap"
       ]
     }),
+    new ExtractTextPlugin("assets/default.[hash].css"),
     new HtmlWebpackPlugin({
-      template: helpers.root("src/index.html"),
+      template: helpers.root("src/index.pug"),
       chunksSortMode: (left, right) => {
         let leftIndex = ENTRY_POINTS.indexOf(left.names[0]);
         let rightindex = ENTRY_POINTS.indexOf(right.names[0]);

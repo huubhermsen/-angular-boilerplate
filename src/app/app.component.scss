@@ -1,3 +1,8 @@
-h1 {
-  color: green;
+@import "core";
+
+.placeholder {
+  @include center;
+  width: rem(480px);
+  background-color: tint($black, 90%);
+  padding: rem(24px);
 }

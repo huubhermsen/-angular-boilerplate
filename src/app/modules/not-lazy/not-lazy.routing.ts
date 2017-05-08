@@ -4,7 +4,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { NotLazyComponent } from "./not-lazy.component";
 
 const routes: Routes = [
-  { path: "", pathMatch: "full", component: NotLazyComponent }
+  { path: "not-lazy", pathMatch: "full", component: NotLazyComponent }
 ];
 
 @NgModule({

@@ -1,0 +1,33 @@
+@import "core";
+
+html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  -webkit-tap-highlight-color: inherit;
+}
+
+:root {
+  font-size: $baseFontSize;
+}
+
+body, html {
+  background: {
+    color: $white;
+  }
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: {
+    family: $primaryFontFamily;
+    weight: 400;
+  }
+}

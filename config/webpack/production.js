@@ -2,7 +2,7 @@
  * Constants
  */
 const ENV = process.env.NODE_ENV = process.env.ENV = "development";
-const AOT_ENABLED = true;
+const AOT_ENABLED = process.env.npm_config_aot || false;
 
 /**
  * Helpers
